@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Popcorn
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Mecanica
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Television
+    uniqueID: 2957956327
+    locked: 0
+  - name: KidKorn
+    uniqueID: 1752392125
+    locked: 0
+  - name: KidKornFrente
+    uniqueID: 4220226561
+    locked: 0
+  - name: Barra
+    uniqueID: 2397827447
+    locked: 0
+  - name: Personajes
+    uniqueID: 455471915
+    locked: 0
+  - name: Ui
+    uniqueID: 490597241
+    locked: 0
+  - name: Transitions
+    uniqueID: 3493060717
+    locked: 0
+  m_RenderingLayers:
+  - Default
