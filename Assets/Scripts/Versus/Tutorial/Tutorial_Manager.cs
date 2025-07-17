@@ -30,6 +30,7 @@ public class Tutorial_Manager : MonoBehaviour
     [SerializeField] private GameObject finalText;
     [SerializeField] private GameObject[] finalSprites;
 
+    [SerializeField] private UnityEngine.Rendering.Volume volumeToBlend;
 
     public string sceneName;
 
@@ -46,7 +47,10 @@ public class Tutorial_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (readyForNext && Input.GetKeyDown(KeyCode.Q))
+        if (PauseManager.isGameLogicPaused) return;
+        var input = GlobalInputManager.Instance;
+
+        if (readyForNext && input.skipP1 || input.skipP2)
         {
             currentStep++;
             StartCoroutine(PlayStep(currentStep));
@@ -153,7 +157,7 @@ public class Tutorial_Manager : MonoBehaviour
     // Instancia 1: Movimiento de Kid Korn al centro con tween
     private IEnumerator KidKornEntrance()
     {
-        float duration = 3f;
+        float duration = 0.2f;
         Vector3 startPos = kidKorn.transform.position;
         Vector3 endPos = kidTargetPosition.position;
         float elapsed = 0f;
@@ -202,18 +206,20 @@ public class Tutorial_Manager : MonoBehaviour
     // Instancia 2: Zoom in de la cámara
     private IEnumerator CanvasZoomIn()
     {
-        float duration = 0.6f;
-        float startY = 1980f;
-        float endY = 1080f;
+        float duration = 0.2f;
+        float startY = 1080f;
+        float endY = 640f;
         float elapsed = 0f;
 
         Vector2 originalRes = canvasScaler.referenceResolution;
-
 
         if (zoomPanel != null)
             zoomPanel.SetActive(true);
 
         canvasScaler.referenceResolution = new Vector2(originalRes.x, startY);
+
+        float startBlend = volumeToBlend != null ? volumeToBlend.blendDistance : 0f;
+        float targetBlend = 400f;
 
         while (elapsed < duration)
         {
@@ -222,16 +228,22 @@ public class Tutorial_Manager : MonoBehaviour
             float currentY = Mathf.Lerp(startY, endY, t);
 
             canvasScaler.referenceResolution = new Vector2(originalRes.x, currentY);
+
+            if (volumeToBlend != null)
+                volumeToBlend.blendDistance = Mathf.Lerp(startBlend, targetBlend, t);
+
             yield return null;
         }
 
-        // Aseguramos que termine exacto
+        // Aseguramos valores exactos al final
         canvasScaler.referenceResolution = new Vector2(originalRes.x, endY);
+        if (volumeToBlend != null)
+            volumeToBlend.blendDistance = targetBlend;
 
-        // Desactivar panel luego del zoom
         if (zoomPanel != null)
             zoomPanel.SetActive(false);
     }
+
 
 
     // Instancia 3 y 4: Mostrar personajes / barra / texto
@@ -269,7 +281,7 @@ public class Tutorial_Manager : MonoBehaviour
 
         while (true)
         {
-            int count = Random.Range(5, 8);
+            int count = Random.Range(6, 9);
             for (int i = 0; i < count; i++)
             {
                 float x = Random.Range(barLeft, barRight);
@@ -278,7 +290,7 @@ public class Tutorial_Manager : MonoBehaviour
                 activePopcorns.Add(popcorn);
             }
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3.5f);
         }
     }
 

@@ -9,16 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/VersusRecolect/TutorialVersus.unity
+    path: Assets/Scenes/Versus/T-Recollect.unity
     guid: 8250c056204b671488d665c46a9737a0
   - enabled: 1
-    path: Assets/Scenes/VersusRecolect/VersusRecolect.unity
+    path: Assets/Scenes/Versus/V-Recollect.unity
     guid: 37644de3251596c4997640dc0fe3dce9
   - enabled: 1
     path: Assets/Scenes/GameMap.unity
     guid: ce642e33159d0724688dda58d3e51ef9
   - enabled: 1
-    path: Assets/Scenes/Shop/Shop.unity
+    path: Assets/Scenes/Versus/Shop/Shop.unity
     guid: 5ae64ca6c30a8f64fa6b66ec5696e571
   - enabled: 1
     path: Assets/Scenes/Starter.unity
@@ -26,6 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 8f95d75b278be844caa2347b1bc0faf1
+  - enabled: 1
+    path: Assets/Scenes/Options/OpcionesMenu.unity
+    guid: c0d8c98b1db3e644d9b5c6ed67063e02
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 7e4d25fe2bc9cfc4fa978506b37b7f6f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

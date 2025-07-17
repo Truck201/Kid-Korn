@@ -27,6 +27,7 @@ public class VersusGameManager : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.isGameLogicPaused) return;
         timer -= Time.deltaTime;
 
         if (timer < 0)
@@ -43,6 +44,7 @@ public class VersusGameManager : MonoBehaviour
 
     public void GeneratePopcornNow(bool isBig = false)
     {
+        if (PauseManager.isGameLogicPaused) return;
         StartCoroutine(GeneratePopcornRoutine(isBig));
     }
 
@@ -66,7 +68,7 @@ public class VersusGameManager : MonoBehaviour
 
             Instantiate(popcornPrefab, spawnPos, Quaternion.identity);
 
-            yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
+            yield return CoroutineUtils.WaitWhileUnpaused(Random.Range(0.1f, 0.3f));
         }
     }
 

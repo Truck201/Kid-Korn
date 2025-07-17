@@ -9,7 +9,7 @@ public class KidKornManager : MonoBehaviour
     [SerializeField] private GameObject kidKornRight;
     [SerializeField] private GameObject kidKornBigContainer; // ¡nuevo!
     [SerializeField] private GameObject kidKornBig;
-    [SerializeField] private GameObject korn;
+    private GameObject korn;
 
     [Header("Audio")]
     [SerializeField] private AudioSource appearSound;
@@ -29,6 +29,7 @@ public class KidKornManager : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.isGameLogicPaused) return;
         // Aparece el BigKidKorn si faltan menos de 7 segundos y aún no apareció
         if (!bigKornTriggered && gameManager.TimeLeft < 10f)
         {
@@ -41,7 +42,7 @@ public class KidKornManager : MonoBehaviour
     {
         while (gameManager.TimeLeft > 0f)
         {
-            yield return new WaitForSeconds(Random.Range(0.5f, 1f));
+            yield return CoroutineUtils.WaitWhileUnpaused(Random.Range(0.5f, 1f));
 
             if (gameManager.TimeLeft > 12.2f && !isKornActive)
             {
@@ -113,7 +114,7 @@ public class KidKornManager : MonoBehaviour
     private IEnumerator HideKidKorn(GameObject korn, float exitX)
     {
         Debug.Log("Esconder Kid Korn");
-        yield return new WaitForSeconds(2f);
+        yield return CoroutineUtils.WaitWhileUnpaused(2f);
         goBackSound.Play();
         yield return MoveKorn(korn, exitX);
         korn.SetActive(false);
@@ -153,17 +154,17 @@ public class KidKornManager : MonoBehaviour
         float upTime = upDistance / speed;
 
         LeanTween.moveLocalY(kidKornBigContainer, targetY, upTime).setEase(LeanTweenType.linear);
-        yield return new WaitForSeconds(upTime);
+        yield return CoroutineUtils.WaitWhileUnpaused(upTime);
 
         // Lanzar muchos pochoclos
         for (int i = 0; i < 5; i++)
         {
             gameManager.GeneratePopcornNow(true);
-            yield return new WaitForSeconds(0.7f);
+            yield return CoroutineUtils.WaitWhileUnpaused(0.7f);
         }
 
         // Espera en pantalla antes de salir
-        yield return new WaitForSeconds(2.5f);
+        yield return CoroutineUtils.WaitWhileUnpaused(2.5f);
 
         goBackSound.Play();
 
@@ -172,10 +173,10 @@ public class KidKornManager : MonoBehaviour
         float downTime = downDistance / speed;
 
         LeanTween.moveLocalY(kidKornBigContainer, endY, downTime).setEase(LeanTweenType.linear);
-        yield return new WaitForSeconds(downTime);
+        yield return CoroutineUtils.WaitWhileUnpaused(downTime);
 
         // PlayAnimation(kidKornBig, "Exit"); // ← NUEVO
-        yield return new WaitForSeconds(0.7f);
+        yield return CoroutineUtils.WaitWhileUnpaused(0.7f);
 
         kidKornBig.SetActive(false);
         screamSound.Stop();
@@ -192,7 +193,7 @@ public class KidKornManager : MonoBehaviour
             float offsetY = Random.Range(-0.3f, 0.3f) * magnitude;
 
             target.localPosition = originalPos + new Vector3(offsetX, offsetY, 0f);
-            yield return new WaitForSeconds(frequency);
+            yield return CoroutineUtils.WaitWhileUnpaused(frequency);
         }
 
         target.localPosition = originalPos;
@@ -202,7 +203,7 @@ public class KidKornManager : MonoBehaviour
     {
         Debug.Log("Kid Korn al centro");
         float duration = 2f;
-        yield return new WaitForSeconds(duration);
+        yield return CoroutineUtils.WaitWhileUnpaused(duration);
         onDone?.Invoke();
     }
 

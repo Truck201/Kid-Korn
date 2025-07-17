@@ -1,47 +1,74 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string sceneName; // nombre exacto de la escena (debe estar en Build Settings)
-    public float delay = 0f; // tiempo antes del cambio
-
+    public string sceneName;
+    public float delay = 0f;
     public bool isButton = false;
+    public Animator animator;
+
+    private bool hasChanged = false;
+    private Coroutine sceneCoroutine;
+
+    void Start()
+    {
+        if (!isButton)
+        {
+            if (delay > 0f)
+                sceneCoroutine = StartCoroutine(DelayedSceneLoad());
+            else
+                LoadScene();
+        }
+    }
 
     public void ChangeScene()
     {
+        if (hasChanged) return;
+
+        Debug.Log("Pressed");
+
+        if (isButton && animator != null)
+        {
+            animator.SetTrigger("isPlay");
+        }
+
         if (delay > 0f)
         {
-            Invoke(nameof(LoadScene), delay);
+            sceneCoroutine = StartCoroutine(DelayedSceneLoad());
         }
         else
         {
-            if (!isButton)
-            {
-                LoadScene();
-            }
+            LoadScene();
         }
+    }
+
+    private IEnumerator DelayedSceneLoad()
+    {
+        float elapsed = 0f;
+
+        while (elapsed < delay)
+        {
+            // Espera solo si el juego NO está pausado
+            if (!PauseManager.isGameLogicPaused)
+                elapsed += Time.unscaledDeltaTime;
+
+            yield return null;
+        }
+
+        LoadScene();
     }
 
     private void LoadScene()
     {
-        SceneTransitionController.Instance.TransitionToScene(sceneName);
-    }
+        if (hasChanged || string.IsNullOrEmpty(sceneName)) return;
 
-    private void FixedUpdate()
-    {
-        if (!isButton)
-        {
-            delay -= Time.deltaTime;
-        }
-    }
+        hasChanged = true;
 
-    private void Update()
-    {
-        if (delay <= 0f && sceneName != null)
-        {
+        if (SceneTransitionController.Instance != null)
             SceneTransitionController.Instance.TransitionToScene(sceneName);
-        }
+        else
+            SceneManager.LoadScene(sceneName);
     }
 }
-
