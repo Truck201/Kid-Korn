@@ -20,9 +20,10 @@ public class GlobalInputManager : MonoBehaviour
     public bool pauseP1 { get; private set; }
     public bool pauseP2 { get; private set; }
 
-
     private Gamepad gamepadP1;
     private Gamepad gamepadP2;
+
+    public GameInputActions InputActions => inputActions;
 
     private void Awake()
     {
@@ -133,4 +134,12 @@ public class GlobalInputManager : MonoBehaviour
         else if (player == 2)
             gamepadP2 = pad;
     }
+
+    public Gamepad GetGamepadForPlayer(int player)
+    {
+        if (player == 1) return gamepadP1;
+        if (player == 2) return gamepadP2;
+        return null;
+    }
 }
+

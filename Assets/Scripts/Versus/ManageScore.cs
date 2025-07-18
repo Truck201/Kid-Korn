@@ -21,12 +21,14 @@ public class ManageScore : MonoBehaviour
 
     public void SetScore(int p1, int p2)
     {
+        Debug.Log("sape");
         scorePlayer1 = p1;
         scorePlayer2 = p2;
     }
 
     public int GetScore(int playerId)
     {
+        Debug.Log("pedilo");
         return playerId == 1 ? scorePlayer1 : scorePlayer2;
     }
 

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ItemShopManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class ItemShopManager : MonoBehaviour
     public Transform player2SlotParent;
     public int maxItemsPerPlayer = 3;
 
+    [Header("UI de Skip")]
+    public TextMeshProUGUI skipTextP1;
+    public TextMeshProUGUI skipTextP2;
 
     [Header("Info Panels")]
     public ItemInfoPanel player1InfoPanel;
@@ -56,6 +60,9 @@ public class ItemShopManager : MonoBehaviour
 
     private void Start()
     {
+        player1Points = ManageScore.Instance != null ? ManageScore.Instance.GetScore(1) : 0;
+        player2Points = ManageScore.Instance != null ? ManageScore.Instance.GetScore(2) : 0;
+
         CreateGridItems();
 
         player1Pos = new Vector2Int(0, 0);
@@ -71,6 +78,7 @@ public class ItemShopManager : MonoBehaviour
         ShowInitialItemInfo();
 
         EnableInputs(); // ⬅️ Asegurate de llamarlo aquí si no se hace desde otro lugar
+        UpdateSkipTextUI();
     }
 
     private void CreateGridItems()
@@ -136,6 +144,8 @@ public class ItemShopManager : MonoBehaviour
     {
         if (!inputsEnabled) return;
         if (PauseManager.isGameLogicPaused) return;
+
+        UpdateSkipTextUI();
 
         var input = GlobalInputManager.Instance;
         Debug.Log($"P1: {input.moveP1} | P2: {input.moveP2}");
@@ -301,10 +311,10 @@ public class ItemShopManager : MonoBehaviour
     private void UpdatePointsUI()
     {
         if (player1PointsText != null)
-            player1PointsText.text = $"P1: {player1Points}";
+            player1PointsText.text = $"{player1Points}";
 
         if (player2PointsText != null)
-            player2PointsText.text = $"P2: {player2Points}";
+            player2PointsText.text = $"{player2Points}";
     }
 
     private void ShowInitialItemInfo()
@@ -336,4 +346,37 @@ public class ItemShopManager : MonoBehaviour
     {
         inputsEnabled = true;
     }
+
+    private void UpdateSkipTextUI()
+    {
+        var globalInput = GlobalInputManager.Instance;
+        if (globalInput == null) return;
+
+        var inputActions = globalInput.InputActions;
+
+        InputDevice deviceP1 = (InputDevice)globalInput.GetGamepadForPlayer(1);
+        if (deviceP1 == null) deviceP1 = Keyboard.current;
+
+        InputDevice deviceP2 = (InputDevice)globalInput.GetGamepadForPlayer(2);
+        if (deviceP2 == null) deviceP2 = Keyboard.current;
+
+        var skipP1 = inputActions.Gameplay.SkipP1;
+        var skipP2 = inputActions.Gameplay.SkipP2;
+
+        string skipDisplayP1 = InputUtils.GetBindingDisplay(skipP1, 1, deviceP1);
+        string skipDisplayP2 = InputUtils.GetBindingDisplay(skipP2, 2, deviceP2);
+
+        if (skipTextP1 != null)
+        {
+            string colorTag = p1WantsToSkip ? "#FE004D" : "white"; // amarillo dorado
+            skipTextP1.text = $"<color={colorTag}>P1 - Presiona ({skipDisplayP1}) para continuar</color>";
+        }
+
+        if (skipTextP2 != null)
+        {
+            string colorTag = p2WantsToSkip ? "#28ADFE" : "white"; // amarillo dorado 28ADFE   055AB5
+            skipTextP2.text = $"<color={colorTag}>P2 - Presiona ({skipDisplayP2}) para continuar</color>";
+        }
+    }
+
 }

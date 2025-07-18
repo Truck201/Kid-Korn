@@ -31,7 +31,7 @@ public class KidKornManager : MonoBehaviour
     {
         if (PauseManager.isGameLogicPaused) return;
         // Aparece el BigKidKorn si faltan menos de 7 segundos y aún no apareció
-        if (!bigKornTriggered && gameManager.TimeLeft < 10f)
+        if (!bigKornTriggered && gameManager.TimeLeft < 10.4f)
         {
             bigKornTriggered = true;
             StartCoroutine(ShowBigKidKorn());
@@ -44,7 +44,7 @@ public class KidKornManager : MonoBehaviour
         {
             yield return CoroutineUtils.WaitWhileUnpaused(Random.Range(0.5f, 1f));
 
-            if (gameManager.TimeLeft > 12.2f && !isKornActive)
+            if (gameManager.TimeLeft > 13.2f && !isKornActive)
             {
                 yield return StartCoroutine(ShowKidKornCoroutine());
             }
@@ -164,7 +164,7 @@ public class KidKornManager : MonoBehaviour
         }
 
         // Espera en pantalla antes de salir
-        yield return CoroutineUtils.WaitWhileUnpaused(2.5f);
+        yield return CoroutineUtils.WaitWhileUnpaused(1.5f);
 
         goBackSound.Play();
 

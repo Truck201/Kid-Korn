@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -104.72, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1809121655542529454}
@@ -47,12 +47,12 @@ GameObject:
   - component: {fileID: 3309366573969522983}
   - component: {fileID: 3308797863320269028}
   m_Layer: 3
-  m_Name: AnillaPlayer1
+  m_Name: AnillaPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6393443719290290168
 Transform:
   m_ObjectHideFlags: 0
@@ -62,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 8271743294150645769}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 620, y: -200.00002, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 1}
+  m_LocalPosition: {x: 314, y: -200.00002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 813631237143388274}
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 450d3a1ed4ae62a49be9b047130ae653, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,9 +109,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1897139849
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -1337010969
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -130418155747527864, guid: 70ab5fd5ea14b9a4998b8d28afa5b3fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,8 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainBar: {fileID: 8436436041883462626}
-  speed: 270
+  speed: 175
   isPlayer1: 0
+  bounceMarginPercent: 0.018
+  canMove: 1
+  isInTutorial: 1
 --- !u!50 &3308797863320269028
 Rigidbody2D:
   serializedVersion: 5
@@ -181,7 +184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1809121655542529454
 Transform:
   m_ObjectHideFlags: 0
@@ -192,7 +195,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -200.00002, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 813631237143388274}
@@ -220,7 +223,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 86526bd7000f05742b4c01338d8e3bc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,9 +241,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1897139849
-  m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingLayerID: -1337010969
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4941077132258559592, guid: 211dda309a7523c438bd8910a7d25173, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -265,12 +268,12 @@ GameObject:
   - component: {fileID: 6598513871323590334}
   - component: {fileID: 5636465461655938849}
   m_Layer: 3
-  m_Name: AnillaPlayer2
+  m_Name: AnillaPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &547292676162096717
 Transform:
   m_ObjectHideFlags: 0
@@ -280,8 +283,8 @@ Transform:
   m_GameObject: {fileID: 8697950558263586234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -620, y: -200.00002, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 1}
+  m_LocalPosition: {x: -314, y: -200.00002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 813631237143388274}
@@ -309,7 +312,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 450d3a1ed4ae62a49be9b047130ae653, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -327,9 +330,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1897139849
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -1337010969
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -8099763269345303391, guid: 5d7bffac4f5e1234b87be600d090c4a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -354,8 +357,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainBar: {fileID: 8436436041883462626}
-  speed: 270
+  speed: 175
   isPlayer1: 1
+  bounceMarginPercent: 0.018
+  canMove: 1
+  isInTutorial: 1
 --- !u!50 &5636465461655938849
 Rigidbody2D:
   serializedVersion: 5

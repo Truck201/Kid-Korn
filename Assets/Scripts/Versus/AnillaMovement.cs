@@ -18,6 +18,8 @@ public class AnillaMovement : MonoBehaviour
     private float ringHalfWidth;
     private float bounceMargin;
 
+    public bool canMove = true;
+
     public bool isInTutorial = false;
     private void Start()
     {
@@ -92,6 +94,8 @@ public class AnillaMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (PauseManager.isGameLogicPaused) return;
+        if (!canMove) return;
+
         Vector2 velocity = new Vector2(direction * speed, 0);
         Vector2 newPosition = ringBody.position + velocity * Time.fixedDeltaTime;
 

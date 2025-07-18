@@ -14,6 +14,14 @@ public class Tutorial_Manager : MonoBehaviour
     [SerializeField] private GameObject[] characters;
     [SerializeField] private GameObject tutorialText1;
     [SerializeField] private GameObject tutorialText2;
+    [SerializeField] private GameObject tutorialText3;
+    [SerializeField] private GameObject tutorialText4;
+    [SerializeField] private GameObject tutorialText5;
+    [SerializeField] private GameObject tutorialText6;
+    [SerializeField] private GameObject tutorialText7;
+
+    [SerializeField] private TutorialControlsUI tutorialControlsUI;
+
     [SerializeField] private GameObject mainBar;
     [SerializeField] private GameObject[] anillas;
     [SerializeField] private GameObject popcornPrefab;
@@ -65,27 +73,57 @@ public class Tutorial_Manager : MonoBehaviour
         {
             case 0:
                 yield return StartCoroutine(KidKornEntrance());
+                tutorialControlsUI.gameObject.SetActive(false);
                 break;
 
             case 1:
                 yield return StartCoroutine(CanvasZoomIn());
+                tutorialControlsUI.gameObject.SetActive(false);
                 break;
 
             case 2:
+                tutorialControlsUI.gameObject.SetActive(true); // Mostrar panel
+                tutorialControlsUI.ShowOnlyPlayer1();          // Mostrar solo los de P1
 
                 ShowCharacters(true);
-                tutorialText1.SetActive(true);
                 mainBar.SetActive(true);
+
+                // Activar anillas
                 foreach (var item in anillas)
-                {
                     item.SetActive(true);
-                }
+
+                tutorialText1.SetActive(true);
+
+                // Desactivar anilla P2 (grisar)
+                SetAnillaState(0, true);   // Player 1 activa
+                SetAnillaState(1, false);  // Player 2 inactiva/opaca
+
+                yield return new WaitUntil(() => GlobalInputManager.Instance.skipP1); // Presiona Q
+                tutorialText1.SetActive(false);
+                tutorialText2.SetActive(true);
+                SetAnillaState(0, false);  // Player 1 ahora inactiva
+                SetAnillaState(1, true);   // Player 2 activa
+
+                tutorialControlsUI.ShowOnlyPlayer2(); // Mostrar solo los de P2
+
+                yield return new WaitUntil(() => GlobalInputManager.Instance.skipP2); // Presiona Q
+                tutorialText2.SetActive(false);
+                tutorialText3.SetActive(true);
+
+                tutorialControlsUI.ShowDisable();
+                // Ambas anillas activas
+                SetAnillaState(0, true);
+                SetAnillaState(1, true);
+
                 break;
+
 
             case 3:
                 StartCoroutine(KidKornMove2());
-                tutorialText1.SetActive(false);
-                tutorialText2.SetActive(true);
+                tutorialControlsUI.ShowDisable();
+                tutorialText3.SetActive(false);
+                tutorialText4.SetActive(true);
+                tutorialText5.SetActive(true);
                 if (player1Score > 0)
                 {
                     player1ScoreText.gameObject.SetActive(true);
@@ -105,7 +143,8 @@ public class Tutorial_Manager : MonoBehaviour
 
             case 4:
                 StartCoroutine(KidKornMove3());
-                tutorialText2.SetActive(false);
+                tutorialText4.SetActive(false);
+                tutorialText5.SetActive(false);
                 ShowCharacters(false);
                 ShowAnillas(false);
                 ShowMainBar(false);
@@ -143,7 +182,7 @@ public class Tutorial_Manager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         /* ────────── LÓGICA DE AVANCE ────────── */
-        if (step < 3 || step == 4)                 // steps 0 y 1 → avance automático
+        if (step < 2 || step == 4)                 // steps 0 y 1 → avance automático
         {
             currentStep++;
             StartCoroutine(PlayStep(currentStep));
@@ -252,6 +291,21 @@ public class Tutorial_Manager : MonoBehaviour
         foreach (var c in characters)
             c.SetActive(visible);
     }
+
+    private void SetAnillaState(int index, bool active)
+    {
+        if (index >= anillas.Length) return;
+
+        var movement = anillas[index].GetComponent<AnillaMovement>();
+        var sprite = anillas[index].GetComponent<SpriteRenderer>();
+
+        if (movement != null)
+            movement.canMove = active;
+
+        if (sprite != null)
+            sprite.color = active ? Color.white : new Color(1f, 1f, 1f, 0.3f); // opaco
+    }
+
 
     private void ShowMainBar(bool visible)
     {
