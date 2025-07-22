@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3bd4c90f624facb40b9f18bb8bf98f3d
+guid: 42bfa165b92f1384ca41ebfec8d6415f
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Retro Gaming
+  - Pixel Operator SC
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

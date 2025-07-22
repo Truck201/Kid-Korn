@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AnillaMovement : MonoBehaviour
 {
-    [Header("Configuración")]
+    [Header("ConfiguraciÃ³n")]
     [SerializeField] private GameObject mainBar;
     [SerializeField] private float speed = 3f;
     [SerializeField] private bool isPlayer1 = true;
@@ -29,10 +29,10 @@ public class AnillaMovement : MonoBehaviour
 
         gameManager = Object.FindFirstObjectByType<VersusGameManager>();
 
-        // Dirección inicial
+        // DirecciÃ³n inicial
         direction = isPlayer1 ? 1 : -1;
 
-        // Calcular límites del mainBar
+        // Calcular lÃ­mites del mainBar
         float barWidth = barSprite.bounds.size.x;
         bounceMargin = barWidth * bounceMarginPercent;
 
@@ -54,14 +54,22 @@ public class AnillaMovement : MonoBehaviour
     {
         if (PauseManager.isGameLogicPaused) return;
         var input = GlobalInputManager.Instance;
-        Vector2 inputDir = isPlayer1 ? input.moveP1 : input.moveP2;
 
-        if (inputDir.x < -0.5f) direction = -1;
-        else if (inputDir.x > 0.5f) direction = 1;
-
-        if ((isPlayer1 && input.selectP1) || (!isPlayer1 && input.selectP2))
+        if (isPlayer1)
         {
-            TryCollectPopcorn();
+            if (input.moveLeftP1PressedThisFrame) direction = -1;
+            else if (input.moveRightP1PressedThisFrame) direction = 1;
+
+            if (input.selectP1)
+                TryCollectPopcorn();
+        }
+        else
+        {
+            if (input.moveLeftP2PressedThisFrame) direction = -1;
+            else if (input.moveRightP2PressedThisFrame) direction = 1;
+
+            if (input.selectP2)
+                TryCollectPopcorn();
         }
     }
 
@@ -72,11 +80,19 @@ public class AnillaMovement : MonoBehaviour
         {
             if (hit.CompareTag("Popcorn"))
             {
+                Vector3 popcornPos = hit.transform.position;
                 Destroy(hit.gameObject);
                 if (gameManager != null)
                 {
-                    gameManager.AddScore(isPlayer1 ? 1 : 2);
+                    int comboLevel = isPlayer1 ? CombosManager.Instance.GetCombo(1) : CombosManager.Instance.GetCombo(2);
+                    int playerId = isPlayer1 ? 1 : 2;
+
+                    gameManager.AddScore(playerId, comboLevel);
+                    gameManager.SpawnScoreParticle(popcornPos, playerId); // ðŸš€ NUEVO
                 }
+
+                // NUEVO: incrementar combo
+                CombosManager.Instance?.AddCombo(isPlayer1 ? 1 : 2);
 
                 if (isInTutorial == true)
                 {

@@ -20,6 +20,11 @@ public class GlobalInputManager : MonoBehaviour
     public bool pauseP1 { get; private set; }
     public bool pauseP2 { get; private set; }
 
+    public bool moveLeftP1PressedThisFrame { get; private set; }
+    public bool moveRightP1PressedThisFrame { get; private set; }
+    public bool moveLeftP2PressedThisFrame { get; private set; }
+    public bool moveRightP2PressedThisFrame { get; private set; }
+
     private Gamepad gamepadP1;
     private Gamepad gamepadP2;
 
@@ -125,6 +130,50 @@ public class GlobalInputManager : MonoBehaviour
     {
         selectP1 = selectP2 = skipP1 = skipP2 = pauseP1 = pauseP2 = false;
     }
+
+    private void Update()
+    {
+        // PLAYER 1
+        moveLeftP1PressedThisFrame = false;
+        moveRightP1PressedThisFrame = false;
+
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.aKey.wasPressedThisFrame)
+                moveLeftP1PressedThisFrame = true;
+            if (Keyboard.current.dKey.wasPressedThisFrame)
+                moveRightP1PressedThisFrame = true;
+        }
+
+        if (gamepadP1 != null)
+        {
+            if (gamepadP1.leftStick.left.wasPressedThisFrame)
+                moveLeftP1PressedThisFrame = true;
+            if (gamepadP1.leftStick.right.wasPressedThisFrame)
+                moveRightP1PressedThisFrame = true;
+        }
+
+        // PLAYER 2
+        moveLeftP2PressedThisFrame = false;
+        moveRightP2PressedThisFrame = false;
+
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+                moveLeftP2PressedThisFrame = true;
+            if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+                moveRightP2PressedThisFrame = true;
+        }
+
+        if (gamepadP2 != null)
+        {
+            if (gamepadP2.leftStick.left.wasPressedThisFrame)
+                moveLeftP2PressedThisFrame = true;
+            if (gamepadP2.leftStick.right.wasPressedThisFrame)
+                moveRightP2PressedThisFrame = true;
+        }
+    }
+
 
     public void AssignGamepadToPlayer(int player, Gamepad pad)
     {

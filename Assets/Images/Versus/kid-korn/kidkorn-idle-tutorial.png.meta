@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 07c06906afc7e6a4a94fa3006fe120d9
+guid: 3aa86e5d813c91e48a4f2f3b47ba5352
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2799486287287029877
-    second: medio_0
+      213: 4876928817775243039
+    second: kidkorn-idle-tutorial_0
+  - first:
+      213: 510671173600344124
+    second: kidkorn-idle-tutorial_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,43 +112,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: medio_0
+      name: kidkorn-idle-tutorial_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 7
-        width: 38
-        height: 42
+        x: 103
+        y: 0
+        width: 250
+        height: 364
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 570125b22f5c9d620800000000000000
-      internalID: 2799486287287029877
+      spriteID: f1feb52bbe45ea340800000000000000
+      internalID: 4876928817775243039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kidkorn-idle-tutorial_1
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 0
+        width: 249
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38fa7b0ab4461700800000000000000
+      internalID: 510671173600344124
       vertices: []
       indices: 
       edges: []
@@ -174,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      medio_0: 2799486287287029877
+      kidkorn-idle-tutorial_0: 4876928817775243039
+      kidkorn-idle-tutorial_1: 510671173600344124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

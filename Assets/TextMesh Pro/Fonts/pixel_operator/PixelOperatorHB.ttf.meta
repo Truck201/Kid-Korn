@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eee0c8d56915b2e41b724ab49717ec21
+guid: 147ab48064dcaf543bc78b93949ae903
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pixel
+  - Pixel Operator HB
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

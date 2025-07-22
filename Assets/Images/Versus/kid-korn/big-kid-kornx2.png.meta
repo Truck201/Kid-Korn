@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 07c06906afc7e6a4a94fa3006fe120d9
+guid: 36aba4e07f3df3f4ba98ced0cd11b7a9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2799486287287029877
-    second: medio_0
+      213: 441135899699694846
+    second: big-kid-kornx2_0
+  - first:
+      213: -6380910106065192426
+    second: big-kid-kornx2_1
+  - first:
+      213: 8078520318153290949
+    second: big-kid-kornx2_2
+  - first:
+      213: -3187476330346657698
+    second: big-kid-kornx2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,8 +56,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1
@@ -109,43 +118,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: medio_0
+      name: big-kid-kornx2_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 7
-        width: 38
-        height: 42
+        x: 113
+        y: 0
+        width: 1742
+        height: 1746
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 570125b22f5c9d620800000000000000
-      internalID: 2799486287287029877
+      spriteID: efcc54773ca3f1600800000000000000
+      internalID: 441135899699694846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big-kid-kornx2_1
+      rect:
+        serializedVersion: 2
+        x: 2063
+        y: 0
+        width: 1742
+        height: 1746
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ab848e0147277a0800000000000000
+      internalID: -6380910106065192426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big-kid-kornx2_2
+      rect:
+        serializedVersion: 2
+        x: 4013
+        y: 0
+        width: 1742
+        height: 1746
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c47d427d6bac1070800000000000000
+      internalID: 8078520318153290949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big-kid-kornx2_3
+      rect:
+        serializedVersion: 2
+        x: 5963
+        y: 0
+        width: 1742
+        height: 1746
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58c8bf5a2fc3c3d0800000000000000
+      internalID: -3187476330346657698
       vertices: []
       indices: 
       edges: []
@@ -164,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      medio_0: 2799486287287029877
+      big-kid-kornx2_0: 441135899699694846
+      big-kid-kornx2_1: -6380910106065192426
+      big-kid-kornx2_2: 8078520318153290949
+      big-kid-kornx2_3: -3187476330346657698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
